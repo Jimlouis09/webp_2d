@@ -146,12 +146,12 @@
 
 <tr>
     <td>Employee Name</td>
-    <td>P<?php echo number_format($basic,2)?></td>
+    <td><?php echo $name;?></td>
 </tr>
 
 <tr>
     <td>Basic Salary</td>
-    <td>P<?php echo number_format($overtimepay, 2)?></td>
+    <td>P<?php echo number_format($basic,2)?></td>
 </tr>
 
 <tr>
