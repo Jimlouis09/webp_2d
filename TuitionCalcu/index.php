@@ -115,22 +115,31 @@ td{
         
         $name = $_POST["name"];
         $tuition = $_POST["tuition"];
-        $discountr = $_POST["discount"];
+        $discount = $_POST["discount"];
+        $discountr = $discount / 100;
         $mtp = $_POST["months"];
-        
+
+        $high = "HIGH MONTHLY PAYMENT";
+        $moder = "MODERATE MONTHLY PAYMENT";
+        $afford = "AFFORDABLE MONTHLY PAYMENT";
+
+        $style1 = "color: green;";
+        $style2 = "color: red;";
+        $style3 = "color: yellow;";
+
         $discounta = $tuition * $discountr;
         $balanceamount = $tuition - $discounta;
-        
-        $high = echo
-          
-        if($tuition >= 10000){
-            $high;
+        $mpayment = $balanceamount / $mtp;
+
+        if($mpayment < 5000){
+           $status = "<span style='$style1'>$afford</span>";
         }
-        else if($tuition ){
-
-     
-
-
+        elseif($mpayment <= 9999){
+           $status = "<span style='$style3'>$moder</span>";
+        }
+        else{
+            $status = "<span style='$style2'>$high</span>";
+        }
 ?>
 <table>
 
@@ -145,37 +154,38 @@ td{
 
 <tr>
     <td>Total Tuition Fee</td>
-    <td>P<?php echo number_format($tuition,2)?></td>
+    <td>₱<?php echo number_format($tuition,2)?></td>
 </tr>
 
 <tr>
     <td>Discount Rate</td>
-    <td>P<?php echo number_format($discountr, 2)?></td>
+    <td><?php echo $discount ."%"?></td>
 </tr>
 
 <tr>
     <td>Discount Amount</td>
-    <td>P<?php echo number_format($grosspay, 2)?></td>
+    <td><?php echo "<span style='color: green;'>" ."₱" . number_format($discounta, 2) . "</span>"; ?></td>
+
 </tr>
 
 <tr>
     <td>Balance After Amount</td>
-    <td>P<?php echo number_format($bonus, 2)?></td>
+    <td>₱<?php echo number_format($balanceamount, 2)?></td>
 </tr>
 
 <tr>
     <td>Months to Pay</td>
-    <td>P<?php echo number_format($tax, 2)?></td>
+    <td><?php echo "$mtp Month(s)"?></td>
 </tr>
 
 <tr>
-    <td><strong>Monthly Payment</strong></td>
-    <td><strong>P<?php echo number_format($netpay, 2)?></strong></td>
+    <td>Monthly Payment</td>
+    <td><strong>₱<?php echo number_format($mpayment, 2)?></strong></td>
 </tr>
 
 <tr>
-    <td><strong>Payment Status</strong></td>
-    <td><strong>P<?php echo number_format($netpay, 2)?></strong></td>
+    <td>Payment Status</td>
+    <td><strong><?php echo $status;?></strong></td>
 </tr>
 
 </table>
